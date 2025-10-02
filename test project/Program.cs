@@ -3,6 +3,6 @@ using test_project;
 
 Console.WriteLine("Hello, World!");
 
-Console.WriteLine("This is a test project.");
+Console.WriteLine("This is a test project for the hackathon.");
 
 Message.GetMessage();

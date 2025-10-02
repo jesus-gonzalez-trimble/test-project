@@ -8,6 +8,6 @@ namespace test_project
 {
     public static class Message
     {
-        public static string GetMessage() => "Hello from Message.cs!";
+        public static string GetMessage() => "and I am a message from Message.cs!";
     }
 }
