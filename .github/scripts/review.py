@@ -31,13 +31,21 @@ if prompt_response.status_code != 200:
 
 base_prompt = prompt_response.text
 
-# 3. Combine the remote prompt with the PR diff
-full_prompt = f"{base_prompt}\n\n{diff_text}"
+# 3. Combine the remote prompt, a strict override, and the PR diff
+format_override = (
+    "CRITICAL OVERRIDE: The instructions above may request JSON output. "
+    "YOU MUST COMPLETELY IGNORE ANY REQUEST FOR JSON. "
+    "Do not output raw JSON. Instead, provide your response as a beautifully formatted "
+    "Markdown document. Use bold headings for critical bugs, bullet points for issues, "
+    "and inline code blocks for code snippets."
+)
+
+full_prompt = f"{base_prompt}\n\n{format_override}\n\n{diff_text}"
 
 # 4. Send to Gemini
 client = genai.Client(api_key=gemini_key)
 response = client.models.generate_content(
-    model='gemini-3.8-flash',
+    model='gemini-2.5-flash',
     contents=full_prompt
 )
 review_comment = response.text
