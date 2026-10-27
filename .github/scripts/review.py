@@ -60,5 +60,6 @@ requests.post(
 
 # 6. Fail the workflow if critical issues are detected
 if "MUST Failure" in review_comment or "[MUST]" in review_comment:
-    print("Critical MUST Failure detected. Failing the CI check.")
+    print("❌ Critical MUST Failure detected. Failing the CI check.")
+    print(f"👉 Please review the Gemini Code Review comment on Pull Request #{pr_number} for detailed feedback.")
     exit(1)
