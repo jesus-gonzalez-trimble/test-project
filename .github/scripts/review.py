@@ -57,3 +57,8 @@ requests.post(
     headers={'Authorization': f'Bearer {gh_token}'}, 
     json={'body': f"### 🤖 Gemini Code Review\n\n{review_comment}"}
 )
+
+# 6. Fail the workflow if critical issues are detected
+if "MUST Failure" in review_comment or "[MUST]" in review_comment:
+    print("Critical MUST Failure detected. Failing the CI check.")
+    exit(1)
