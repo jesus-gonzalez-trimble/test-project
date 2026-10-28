@@ -46,7 +46,10 @@ full_prompt = f"{base_prompt}\n\n{format_override}\n\n{diff_text}"
 client = genai.Client(api_key=gemini_key)
 response = client.models.generate_content(
     model='gemini-2.5-flash',
-    contents=full_prompt
+    contents=full_prompt,
+    config={
+        'thinking_level': 'low'
+    }
 )
 review_comment = response.text
 
